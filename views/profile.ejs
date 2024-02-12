@@ -1,0 +1,104 @@
+<%- include('./header.ejs') %>
+
+<br><br><br><br>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="text-center">Profile</h1>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class=" w-100 h-100  bg-body-tertiary">
+                    <center><img src="<%= i.url %>" alt="mdo" width="150" height="150" class="rounded-circle mt-3 mb-2"></center>
+                        <div class="col-md-12 text-center">
+                            
+                                <div class="mb-2">
+                                    <input type="text" value="<%= n %>" name="name" class="form-control text-center">
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" value="<%= e %>" name="email" class="form-control text-center">
+                                </div>
+                                <button type="button" class="btn btn-info text-dark"  data-bs-toggle="modal" data-bs-target="#updatepassword">update password</button>
+                                <button type="button" class="btn btn-danger text-dark" data-bs-toggle="modal" data-bs-target="#updateprofile">update profile</button>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</body>
+
+<!-- profile model -->
+<div class="modal fade" id="updateprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">profile</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/update_profile" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label>Name</label>
+                <input type="text" value="<%= n %>" name="name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>email</label>
+                <input type="text" value="<%= e %>" name="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Photo</label>
+                <input type="file" name="image" class="form-control">
+                <img src="<%= i.url %>" alt="" width="80">
+            </div>
+            <button type="submit" class="btn btn-info">submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Change Password -->
+<div
+  class="modal fade"
+  id="changepassword"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="/changepassword" method="post">
+          <div class="mb-3">
+            <label for="">Old Password</label>
+            <input type="text" name="op" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label for="">New Password</label>
+            <input type="text" name="np" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label for="">Confirm Password</label>
+            <input type="text" name="cp" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal Change Password end -->
+
+<%- include('./footer.ejs') %>
